@@ -24,7 +24,13 @@ type Mutation {
 
   requestReset(email: String!): SuccessMessage
 
-  resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
+  resetPassword(
+    resetToken: String!
+    password: String!
+    confirmPassword: String!
+  ): User!
+
+  updatePermissions(permissions: [Permission], userId: ID!): User
 }
 
 type Query {
@@ -34,9 +40,14 @@ type Query {
     skip: Int
     first: Int
   ): [Item]!
+
   item(where: ItemWhereUniqueInput!): Item
+
   itemsConnection(where: ItemWhereInput): ItemConnection!
+
   me: User
+
+  users: [User]!
 }
 
 type User {
